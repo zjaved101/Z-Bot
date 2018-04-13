@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
             console.log("I have successfully connected to the channel!");
 
             const ytdl = require('ytdl-core');
-            // var link = args[0];
+            let link = args[0];
             // console.log(typeof link == "string");
             if(link !== undefined){
                 const dispatcher = connection.playStream(ytdl(link, { filter: 'audioonly'}));
