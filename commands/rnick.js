@@ -1,22 +1,30 @@
 exports.run = (client, message, args) => {
     
-    const wordSite = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain";
-    const request = require('request');
-    const timeout = 10 * 1000;
-    const opts = {url: url, timeout: timeout};
+    // const wordSite = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain";
+    // const request = require('request');
+    // const timeout = 10 * 1000;
+    // const opts = {url: url, timeout: timeout};
 
-    requests(opts, function (err, res, body) {
-        if(err) {
-            console.dir(err)
-            return
-        }
+    // requests(opts, function (err, res, body) {
+    //     if(err) {
+    //         console.dir(err)
+    //         return
+    //     }
 
-        const statusCode = res.statusCode;
-        console.log('status code: ' + statusCode);
-    });
+    //     const statusCode = res.statusCode;
+    //     console.log('status code: ' + statusCode);
+    // });
 
-    counter = 0;
-    run = 90;
+    // counter = 0;
+    // run = 90;
+
+    //This is how you can change a users nickname
+    var wordSite = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+    
+    var member = message.mentions.members.first();
+    member.setNickname("pleb");
+
+
 
     
 }
