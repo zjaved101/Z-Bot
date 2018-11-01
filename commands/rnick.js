@@ -19,10 +19,37 @@ exports.run = (client, message, args) => {
     // run = 90;
 
     //This is how you can change a users nickname
-    var wordSite = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+    const request = require('request');
+    const wordSite = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+    request({
+        url: wordSite,
+        json: true,
+    }, (err, res, body) => {
+        if(!err && res.statusCode === 200) {
+            let member = message.mentions.members.first();
+            let parse = body.split('\n');
+            // console.log(parse);
+            const count = Math.floor(Math.random() * 50);
+            for(let i = 0; i < count; i++) {
+                member.setNickname(parse[Math.floor(Math.random() * parse.length)]);
+                // console.log(body);
+                // let parsed = JSON.parse(body);
+                // console.log(parsed);
+                // console.log(body.key);
+                // console.log(body[Math.floor(Math.random() * body.length)]);
+                // member.setNickname(body[Math.floor(Math.random() * body.length)]);
+            }
+            console.log('finished changing nickname');
+            // console.log(body[Math.floor(Math.random() * body.length)]);
+            // member.setNickname(body[Math.floor(Math.random() * body.length)]);
+        }
+        else {
+            console.log(err);
+        }
+    });
     
-    var member = message.mentions.members.first();
-    member.setNickname("pleb");
+    // var member = message.mentions.members.first();
+    // member.setNickname("prebbbb");
 
 
 
