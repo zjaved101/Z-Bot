@@ -19,14 +19,22 @@ exports.run = (client, message, args) => {
     // run = 90;
 
     function changeNick(text, member) {
-        member.setNickname(text[Math.floor(Math.random() * text.length)]).catch(console.error);
+        member.setNickname(text[Math.floor(Math.random() * text.length)]).catch("ERROR:" + console.error);
     }
 
     //This is how you can change a users nickname
     const request = require('request');
-    const wordSite = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+    // const wordSite = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+    const wordSites = ["http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain", "https://www.cs.cmu.edu/~biglou/resources/bad-words.txt"];
+    
+    let index = 0;
+    if(args.length > 1){
+        index = args[1];
+        // console.log(index);
+    }
+
     request({
-        url: wordSite,
+        url: wordSites[index],
         json: true,
     }, (err, res, body) => {
         if(!err && res.statusCode === 200) {
